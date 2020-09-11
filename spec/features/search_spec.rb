@@ -10,9 +10,6 @@ RSpec.describe "PoetryDB API" do
     click_on "Get Poems"
 
     expect(current_path).to eq(search_path)
-
-    expect(body[:data].count).to eq(10)
-    expect(body[:data]).to include(author_name)
     expect(page).to have_content("Here are the first 10 poems")
 
     within ".poems" do
@@ -21,6 +18,8 @@ RSpec.describe "PoetryDB API" do
       expect(page).to have_css(".poem_string")
       expect(page).to have_css(".tones")
     end
+
+    expect(page).to have_css(".poem", count: 10)
   end
 #   As a user
 # When I visit "/"
