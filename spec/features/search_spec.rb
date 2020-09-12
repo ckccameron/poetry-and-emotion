@@ -11,15 +11,21 @@ RSpec.describe "PoetryDB API" do
 
     expect(current_path).to eq(search_path)
     expect(page).to have_content("Here are the first 10 poems")
+    expect(page).to have_css(".poem", count: 10)
 
-    within ".poems" do
+    within (first(".poem")) do
       expect(page).to have_css(".title")
       expect(page).to have_css(".author")
       expect(page).to have_css(".poem_string")
       expect(page).to have_css(".tones")
     end
 
-    expect(page).to have_css(".poem", count: 10)
+    # within ".poems".last do
+    #   expect(page).to have_css(".title")
+    #   expect(page).to have_css(".author")
+    #   expect(page).to have_css(".poem_string")
+    #   expect(page).to have_css(".tones")
+    # end
   end
 #   As a user
 # When I visit "/"
